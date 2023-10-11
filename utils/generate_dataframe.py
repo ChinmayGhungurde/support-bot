@@ -12,15 +12,13 @@ csv_file = os.path.join(root_folder, "data", "reviews.csv")
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file)
 
-# Randomly select 50 records
-random.seed(42)  # Set a seed for reproducibility
+# Randomly select 30 records
+random.seed(50)  # Set a seed for reproducibility
 num_records_to_select = 30
 selected_indices = random.sample(range(len(df)), num_records_to_select)
 selected_df = df.iloc[selected_indices]
 
 # Preprocess the content column
-
-
 def preprocess_text(text):
     # Replace tabs, multiple spaces, and newlines with single spaces
     text = re.sub(r'\s+', ' ', text)
@@ -36,7 +34,3 @@ def preprocess_text(text):
 def generate_dataframe():
     selected_df['content'] = selected_df['content'].apply(preprocess_text)
     return selected_df
-
-
-# Print the preprocessed DataFrame
-print(selected_df)
